@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FEAModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FEAModelStoreContainer">
+          <EntitySet Name="Character" EntityType="FEAModel.Store.Character" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="CharacterID" />
+          </Key>
+          <Property Name="CharacterID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="ModStr" Type="int" Nullable="false" />
+          <Property Name="ModMag" Type="int" Nullable="false" />
+          <Property Name="ModSkl" Type="int" Nullable="false" />
+          <Property Name="ModSpd" Type="int" Nullable="false" />
+          <Property Name="ModLck" Type="int" Nullable="false" />
+          <Property Name="ModDef" Type="int" Nullable="false" />
+          <Property Name="ModRes" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FEAModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FEAEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Characters" EntityType="FEAModel.Character" />
+        </EntityContainer>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="CharacterID" />
+          </Key>
+          <Property Name="CharacterID" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModStr" Type="Int32" Nullable="false" />
+          <Property Name="ModMag" Type="Int32" Nullable="false" />
+          <Property Name="ModSkl" Type="Int32" Nullable="false" />
+          <Property Name="ModSpd" Type="Int32" Nullable="false" />
+          <Property Name="ModLck" Type="Int32" Nullable="false" />
+          <Property Name="ModDef" Type="Int32" Nullable="false" />
+          <Property Name="ModRes" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FEAModelStoreContainer" CdmEntityContainer="FEAEntities">
+          <EntitySetMapping Name="Characters">
+            <EntityTypeMapping TypeName="FEAModel.Character">
+              <MappingFragment StoreEntitySet="Character">
+                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ModStr" ColumnName="ModStr" />
+                <ScalarProperty Name="ModMag" ColumnName="ModMag" />
+                <ScalarProperty Name="ModSkl" ColumnName="ModSkl" />
+                <ScalarProperty Name="ModSpd" ColumnName="ModSpd" />
+                <ScalarProperty Name="ModLck" ColumnName="ModLck" />
+                <ScalarProperty Name="ModDef" ColumnName="ModDef" />
+                <ScalarProperty Name="ModRes" ColumnName="ModRes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
