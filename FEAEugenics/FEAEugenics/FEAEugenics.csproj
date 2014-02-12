@@ -159,6 +159,7 @@
     <Content Include="Scripts\knockout-3.0.0.min.js" />
     <Content Include="Scripts\knockout-delegatedEvents.js" />
     <Content Include="Scripts\knockout-postbox.js" />
+    <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
