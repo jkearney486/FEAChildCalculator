@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="acadc3daad7c40459c71678c573c7b05" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="acadc3daad7c40459c71678c573c7b05" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="FEAModel.Character" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FEAModel.Class" Width="1.5" PointX="3.3063467886794111" PointY="30.756095855848908" />
         <EntityTypeShape EntityType="FEAModel.ClassPromotion" Width="1.5" PointX="9.15265099012882" PointY="25.583045226327631" />
@@ -16,6 +16,10 @@
         <AssociationConnector Association="FEAModel.FK_ClassPromotion_Base" />
         <AssociationConnector Association="FEAModel.FK_ClassPromotion_Promoted" />
         <AssociationConnector Association="FEAModel.FK_ClassSet_Class" />
+        <EntityTypeShape EntityType="FEAModel.ParentChild" Width="1.5" PointX="4.2409569659461068" PointY="9.7913831667003137" />
+        <AssociationConnector Association="FEAModel.FK_ParentChild_Child" />
+        <AssociationConnector Association="FEAModel.FK_ParentChild_Parent" />
+        <AssociationConnector Association="FEAModel.FK_Parent_Child" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

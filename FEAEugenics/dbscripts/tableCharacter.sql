@@ -1,7 +1,7 @@
 USE [FEA]
 GO
 
-/****** Object:  Table [dbo].[Character]    Script Date: 5/5/2014 10:01:46 PM ******/
+/****** Object:  Table [dbo].[Character]    Script Date: 5/6/2014 3:35:51 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -22,6 +22,7 @@ CREATE TABLE [dbo].[Character](
 	[ModLck] [int] NOT NULL,
 	[ModDef] [int] NOT NULL,
 	[ModRes] [int] NOT NULL,
+	[ParentID] [bigint] NULL,
  CONSTRAINT [PK_Character] PRIMARY KEY CLUSTERED 
 (
 	[CharacterID] ASC
@@ -31,6 +32,16 @@ CREATE TABLE [dbo].[Character](
 GO
 
 SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[Character] ADD  DEFAULT (NULL) FOR [ParentID]
+GO
+
+ALTER TABLE [dbo].[Character]  WITH CHECK ADD  CONSTRAINT [FK_Parent_Child] FOREIGN KEY([ParentID])
+REFERENCES [dbo].[Character] ([CharacterID])
+GO
+
+ALTER TABLE [dbo].[Character] CHECK CONSTRAINT [FK_Parent_Child]
 GO
 
 
