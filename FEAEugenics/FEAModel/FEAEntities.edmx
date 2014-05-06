@@ -28,7 +28,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FEAModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="FEAEntities" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="FEAEntities" p1:LazyLoadingEnabled="false">
           <EntitySet Name="Characters" EntityType="FEAModel.Character" />
         </EntityContainer>
         <EntityType Name="Character">

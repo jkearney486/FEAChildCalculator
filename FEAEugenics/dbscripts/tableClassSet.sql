@@ -1,0 +1,39 @@
+USE [FEA]
+GO
+
+/****** Object:  Table [dbo].[ClassSet]    Script Date: 5/5/2014 10:02:33 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ClassSet](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CharacterID] [bigint] NOT NULL,
+	[ClassID] [int] NOT NULL,
+ CONSTRAINT [PK_ClassSet] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[ClassSet]  WITH CHECK ADD  CONSTRAINT [FK_ClassSet_Character] FOREIGN KEY([CharacterID])
+REFERENCES [dbo].[Character] ([CharacterID])
+GO
+
+ALTER TABLE [dbo].[ClassSet] CHECK CONSTRAINT [FK_ClassSet_Character]
+GO
+
+ALTER TABLE [dbo].[ClassSet]  WITH CHECK ADD  CONSTRAINT [FK_ClassSet_Class] FOREIGN KEY([ClassID])
+REFERENCES [dbo].[Class] ([ClassID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[ClassSet] CHECK CONSTRAINT [FK_ClassSet_Class]
+GO
+
+
