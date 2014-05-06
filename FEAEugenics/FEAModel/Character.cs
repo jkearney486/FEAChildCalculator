@@ -14,6 +14,13 @@ namespace FEAModel
     
     public partial class Character
     {
+        public Character()
+        {
+            this.ClassSets = new HashSet<ClassSet>();
+            this.Supports = new HashSet<Support>();
+            this.Supports1 = new HashSet<Support>();
+        }
+    
         public long CharacterID { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }
@@ -24,5 +31,9 @@ namespace FEAModel
         public int ModLck { get; set; }
         public int ModDef { get; set; }
         public int ModRes { get; set; }
+    
+        public virtual ICollection<ClassSet> ClassSets { get; set; }
+        public virtual ICollection<Support> Supports { get; set; }
+        public virtual ICollection<Support> Supports1 { get; set; }
     }
 }

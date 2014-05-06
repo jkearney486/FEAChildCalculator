@@ -49,6 +49,15 @@
     <Compile Include="Character.cs">
       <DependentUpon>FEAEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Class.cs">
+      <DependentUpon>FEAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassPromotion.cs">
+      <DependentUpon>FEAEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassSet.cs">
+      <DependentUpon>FEAEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="FEAEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,6 +74,9 @@
       <DependentUpon>FEAEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support.cs">
+      <DependentUpon>FEAEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="FEAEntities.edmx">
