@@ -70,7 +70,6 @@
           <Property Name="MaxLck" Type="int" Nullable="false" />
           <Property Name="MaxDef" Type="int" Nullable="false" />
           <Property Name="MaxRes" Type="int" Nullable="false" />
-          <Property Name="MaxLevel" Type="int" Nullable="false" />
           <Property Name="IsBaseClass" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ClassPromotion">
@@ -258,7 +257,6 @@
           <Property Type="Int32" Name="MaxLck" Nullable="false" />
           <Property Type="Int32" Name="MaxDef" Nullable="false" />
           <Property Type="Int32" Name="MaxRes" Nullable="false" />
-          <Property Type="Int32" Name="MaxLevel" Nullable="false" />
           <Property Type="Boolean" Name="IsBaseClass" Nullable="false" />
           <NavigationProperty Name="ClassPromotions" Relationship="FEAModel.FK_ClassPromotion_Base" FromRole="Class" ToRole="ClassPromotion" />
           <NavigationProperty Name="ClassPromotions1" Relationship="FEAModel.FK_ClassPromotion_Promoted" FromRole="Class" ToRole="ClassPromotion" />
@@ -408,7 +406,6 @@
             <EntityTypeMapping TypeName="FEAModel.Class">
               <MappingFragment StoreEntitySet="Class">
                 <ScalarProperty Name="IsBaseClass" ColumnName="IsBaseClass" />
-                <ScalarProperty Name="MaxLevel" ColumnName="MaxLevel" />
                 <ScalarProperty Name="MaxRes" ColumnName="MaxRes" />
                 <ScalarProperty Name="MaxDef" ColumnName="MaxDef" />
                 <ScalarProperty Name="MaxLck" ColumnName="MaxLck" />

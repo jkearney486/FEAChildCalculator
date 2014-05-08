@@ -1,7 +1,7 @@
 USE [FEA]
 GO
 
-/****** Object:  Table [dbo].[Class]    Script Date: 5/5/2014 10:02:05 PM ******/
+/****** Object:  Table [dbo].[Class]    Script Date: 5/8/2014 5:41:56 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -22,7 +22,6 @@ CREATE TABLE [dbo].[Class](
 	[MaxLck] [int] NOT NULL,
 	[MaxDef] [int] NOT NULL,
 	[MaxRes] [int] NOT NULL,
-	[MaxLevel] [int] NOT NULL,
 	[IsBaseClass] [bit] NOT NULL,
  CONSTRAINT [PK_Class] PRIMARY KEY CLUSTERED 
 (

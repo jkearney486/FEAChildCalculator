@@ -31,7 +31,6 @@ namespace FEAModel
         public int MaxLck { get; set; }
         public int MaxDef { get; set; }
         public int MaxRes { get; set; }
-        public int MaxLevel { get; set; }
         public bool IsBaseClass { get; set; }
     
         public virtual ICollection<ClassPromotion> ClassPromotions { get; set; }
