@@ -19,7 +19,7 @@ namespace FEAModel
             this.ClassSets = new HashSet<ClassSet>();
             this.Supports = new HashSet<Support>();
             this.Supports1 = new HashSet<Support>();
-            this.Character1 = new HashSet<Character>();
+            this.Children = new HashSet<Character>();
         }
     
         public long CharacterID { get; set; }
@@ -37,7 +37,7 @@ namespace FEAModel
         public virtual ICollection<ClassSet> ClassSets { get; set; }
         public virtual ICollection<Support> Supports { get; set; }
         public virtual ICollection<Support> Supports1 { get; set; }
-        public virtual ICollection<Character> Character1 { get; set; }
-        public virtual Character Character2 { get; set; }
+        public virtual ICollection<Character> Children { get; set; }
+        public virtual Character Parent { get; set; }
     }
 }

@@ -16,8 +16,8 @@ namespace FEAModel
     {
         public Class()
         {
-            this.ClassPromotions = new HashSet<ClassPromotion>();
-            this.ClassPromotions1 = new HashSet<ClassPromotion>();
+            this.BaseClasses = new HashSet<ClassPromotion>();
+            this.PromotedClasses = new HashSet<ClassPromotion>();
             this.ClassSets = new HashSet<ClassSet>();
         }
     
@@ -33,8 +33,8 @@ namespace FEAModel
         public int MaxRes { get; set; }
         public bool IsBaseClass { get; set; }
     
-        public virtual ICollection<ClassPromotion> ClassPromotions { get; set; }
-        public virtual ICollection<ClassPromotion> ClassPromotions1 { get; set; }
+        public virtual ICollection<ClassPromotion> BaseClasses { get; set; }
+        public virtual ICollection<ClassPromotion> PromotedClasses { get; set; }
         public virtual ICollection<ClassSet> ClassSets { get; set; }
     }
 }

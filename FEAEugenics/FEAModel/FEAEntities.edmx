@@ -240,8 +240,8 @@
           <NavigationProperty Name="Supports" Relationship="FEAModel.FK_Support_Character" FromRole="Character" ToRole="Support" />
           <NavigationProperty Name="Supports1" Relationship="FEAModel.FK_Support_PairCharacter" FromRole="Character" ToRole="Support" />
           <Property Type="Int64" Name="ParentID" />
-          <NavigationProperty Name="Character1" Relationship="FEAModel.FK_Parent_Child" FromRole="Character" ToRole="Character1" />
-          <NavigationProperty Name="Character2" Relationship="FEAModel.FK_Parent_Child" FromRole="Character1" ToRole="Character" />
+          <NavigationProperty Name="Children" Relationship="FEAModel.FK_Parent_Child" FromRole="Character" ToRole="Character1" />
+          <NavigationProperty Name="Parent" Relationship="FEAModel.FK_Parent_Child" FromRole="Character1" ToRole="Character" />
         </EntityType>
         <EntityType Name="Class">
           <Key>
@@ -258,8 +258,8 @@
           <Property Type="Int32" Name="MaxDef" Nullable="false" />
           <Property Type="Int32" Name="MaxRes" Nullable="false" />
           <Property Type="Boolean" Name="IsBaseClass" Nullable="false" />
-          <NavigationProperty Name="ClassPromotions" Relationship="FEAModel.FK_ClassPromotion_Base" FromRole="Class" ToRole="ClassPromotion" />
-          <NavigationProperty Name="ClassPromotions1" Relationship="FEAModel.FK_ClassPromotion_Promoted" FromRole="Class" ToRole="ClassPromotion" />
+          <NavigationProperty Name="BaseClasses" Relationship="FEAModel.FK_ClassPromotion_Base" FromRole="Class" ToRole="ClassPromotion" />
+          <NavigationProperty Name="PromotedClasses" Relationship="FEAModel.FK_ClassPromotion_Promoted" FromRole="Class" ToRole="ClassPromotion" />
           <NavigationProperty Name="ClassSets" Relationship="FEAModel.FK_ClassSet_Class" FromRole="Class" ToRole="ClassSet" />
         </EntityType>
         <EntityType Name="ClassPromotion">
@@ -269,8 +269,8 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="BaseClassID" Nullable="false" />
           <Property Type="Int32" Name="PromotedClassID" Nullable="false" />
-          <NavigationProperty Name="Class" Relationship="FEAModel.FK_ClassPromotion_Base" FromRole="ClassPromotion" ToRole="Class" />
-          <NavigationProperty Name="Class1" Relationship="FEAModel.FK_ClassPromotion_Promoted" FromRole="ClassPromotion" ToRole="Class" />
+          <NavigationProperty Name="BaseClass" Relationship="FEAModel.FK_ClassPromotion_Base" FromRole="ClassPromotion" ToRole="Class" />
+          <NavigationProperty Name="PromotedClass" Relationship="FEAModel.FK_ClassPromotion_Promoted" FromRole="ClassPromotion" ToRole="Class" />
         </EntityType>
         <EntityType Name="ClassSet">
           <Key>

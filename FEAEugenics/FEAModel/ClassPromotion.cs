@@ -18,7 +18,7 @@ namespace FEAModel
         public int BaseClassID { get; set; }
         public int PromotedClassID { get; set; }
     
-        public virtual Class Class { get; set; }
-        public virtual Class Class1 { get; set; }
+        public virtual Class BaseClass { get; set; }
+        public virtual Class PromotedClass { get; set; }
     }
 }
