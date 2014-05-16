@@ -28,8 +28,5 @@ namespace FEAModel
     
         public DbSet<Character> Characters { get; set; }
         public DbSet<Class> Classes { get; set; }
-        public DbSet<ClassPromotion> ClassPromotions { get; set; }
-        public DbSet<ClassSet> ClassSets { get; set; }
-        public DbSet<Support> Supports { get; set; }
     }
 }

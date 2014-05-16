@@ -8,9 +8,24 @@
         <EntityContainer Name="FEAModelStoreContainer">
           <EntitySet Name="Character" EntityType="FEAModel.Store.Character" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Class" EntityType="FEAModel.Store.Class" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ClassPromotion" EntityType="FEAModel.Store.ClassPromotion" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ClassSet" EntityType="FEAModel.Store.ClassSet" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Support" EntityType="FEAModel.Store.Support" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ClassPromotion" EntityType="FEAModel.Store.ClassPromotion" store:Type="Tables" store:Schema="dbo" store:Name="ClassPromotion">
+            <DefiningQuery>SELECT 
+      [ClassPromotion].[BaseClassID] AS [BaseClassID], 
+      [ClassPromotion].[PromotedClassID] AS [PromotedClassID]
+      FROM [dbo].[ClassPromotion] AS [ClassPromotion]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ClassSet" EntityType="FEAModel.Store.ClassSet" store:Type="Tables" store:Schema="dbo" store:Name="ClassSet">
+            <DefiningQuery>SELECT 
+      [ClassSet].[CharacterID] AS [CharacterID], 
+      [ClassSet].[ClassID] AS [ClassID]
+      FROM [dbo].[ClassSet] AS [ClassSet]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Support" EntityType="FEAModel.Store.Support" store:Type="Tables" store:Schema="dbo" store:Name="Support">
+            <DefiningQuery>SELECT 
+      [Support].[CharacterID] AS [CharacterID], 
+      [Support].[SupportID] AS [SupportID]
+      FROM [dbo].[Support] AS [Support]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_ClassPromotion_Base" Association="FEAModel.Store.FK_ClassPromotion_Base">
             <End Role="Class" EntitySet="Class" />
             <End Role="ClassPromotion" EntitySet="ClassPromotion" />
@@ -72,30 +87,38 @@
           <Property Name="MaxRes" Type="int" Nullable="false" />
           <Property Name="IsBaseClass" Type="bit" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'FEA.dbo.ClassPromotion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
         <EntityType Name="ClassPromotion">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="BaseClassID" />
+            <PropertyRef Name="PromotedClassID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="BaseClassID" Type="int" Nullable="false" />
           <Property Name="PromotedClassID" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'FEA.dbo.ClassSet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
         <EntityType Name="ClassSet">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="CharacterID" />
+            <PropertyRef Name="ClassID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CharacterID" Type="bigint" Nullable="false" />
           <Property Name="ClassID" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'FEA.dbo.Support' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
         <EntityType Name="Support">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="CharacterID" />
+            <PropertyRef Name="SupportID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CharacterID" Type="bigint" Nullable="false" />
           <Property Name="SupportID" Type="bigint" Nullable="false" />
-          <Property Name="SupportRank" Type="varchar" MaxLength="1" />
         </EntityType>
         <Association Name="FK_ClassPromotion_Base">
           <End Role="Class" Type="FEAModel.Store.Class" Multiplicity="1" />
@@ -190,36 +213,21 @@
         <EntityContainer Name="FEAEntities" p1:LazyLoadingEnabled="false">
           <EntitySet Name="Characters" EntityType="FEAModel.Character" />
           <EntitySet Name="Classes" EntityType="FEAModel.Class" />
-          <EntitySet Name="ClassPromotions" EntityType="FEAModel.ClassPromotion" />
-          <EntitySet Name="ClassSets" EntityType="FEAModel.ClassSet" />
-          <EntitySet Name="Supports" EntityType="FEAModel.Support" />
-          <AssociationSet Name="FK_ClassSet_Character" Association="FEAModel.FK_ClassSet_Character">
-            <End Role="Character" EntitySet="Characters" />
-            <End Role="ClassSet" EntitySet="ClassSets" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Support_Character" Association="FEAModel.FK_Support_Character">
-            <End Role="Character" EntitySet="Characters" />
-            <End Role="Support" EntitySet="Supports" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Support_PairCharacter" Association="FEAModel.FK_Support_PairCharacter">
-            <End Role="Character" EntitySet="Characters" />
-            <End Role="Support" EntitySet="Supports" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClassPromotion_Base" Association="FEAModel.FK_ClassPromotion_Base">
-            <End Role="Class" EntitySet="Classes" />
-            <End Role="ClassPromotion" EntitySet="ClassPromotions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClassPromotion_Promoted" Association="FEAModel.FK_ClassPromotion_Promoted">
-            <End Role="Class" EntitySet="Classes" />
-            <End Role="ClassPromotion" EntitySet="ClassPromotions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClassSet_Class" Association="FEAModel.FK_ClassSet_Class">
-            <End Role="Class" EntitySet="Classes" />
-            <End Role="ClassSet" EntitySet="ClassSets" />
-          </AssociationSet>
           <AssociationSet Name="FK_Parent_Child" Association="FEAModel.FK_Parent_Child">
             <End Role="Character" EntitySet="Characters" />
             <End Role="Character1" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="Support" Association="FEAModel.Support">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="Character1" EntitySet="Characters" />
+          </AssociationSet>
+          <AssociationSet Name="ClassPromotion" Association="FEAModel.ClassPromotion">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Class1" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="ClassSet" Association="FEAModel.ClassSet">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="Class" EntitySet="Classes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Character">
@@ -236,12 +244,12 @@
           <Property Name="ModLck" Type="Int32" Nullable="false" />
           <Property Name="ModDef" Type="Int32" Nullable="false" />
           <Property Name="ModRes" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ClassSets" Relationship="FEAModel.FK_ClassSet_Character" FromRole="Character" ToRole="ClassSet" />
-          <NavigationProperty Name="Supports" Relationship="FEAModel.FK_Support_Character" FromRole="Character" ToRole="Support" />
-          <NavigationProperty Name="Supports1" Relationship="FEAModel.FK_Support_PairCharacter" FromRole="Character" ToRole="Support" />
           <Property Type="Int64" Name="ParentID" />
           <NavigationProperty Name="Children" Relationship="FEAModel.FK_Parent_Child" FromRole="Character" ToRole="Character1" />
           <NavigationProperty Name="Parent" Relationship="FEAModel.FK_Parent_Child" FromRole="Character1" ToRole="Character" />
+          <NavigationProperty Name="Characters1" Relationship="FEAModel.Support" FromRole="Character" ToRole="Character1" />
+          <NavigationProperty Name="Characters" Relationship="FEAModel.Support" FromRole="Character1" ToRole="Character" />
+          <NavigationProperty Name="Classes" Relationship="FEAModel.ClassSet" FromRole="Character" ToRole="Class" />
         </EntityType>
         <EntityType Name="Class">
           <Key>
@@ -258,115 +266,10 @@
           <Property Type="Int32" Name="MaxDef" Nullable="false" />
           <Property Type="Int32" Name="MaxRes" Nullable="false" />
           <Property Type="Boolean" Name="IsBaseClass" Nullable="false" />
-          <NavigationProperty Name="BaseClasses" Relationship="FEAModel.FK_ClassPromotion_Base" FromRole="Class" ToRole="ClassPromotion" />
-          <NavigationProperty Name="PromotedClasses" Relationship="FEAModel.FK_ClassPromotion_Promoted" FromRole="Class" ToRole="ClassPromotion" />
-          <NavigationProperty Name="ClassSets" Relationship="FEAModel.FK_ClassSet_Class" FromRole="Class" ToRole="ClassSet" />
+          <NavigationProperty Name="PromotedClasses" Relationship="FEAModel.ClassPromotion" FromRole="Class" ToRole="Class1" />
+          <NavigationProperty Name="BaseClasses" Relationship="FEAModel.ClassPromotion" FromRole="Class1" ToRole="Class" />
+          <NavigationProperty Name="Characters" Relationship="FEAModel.ClassSet" FromRole="Class" ToRole="Character" />
         </EntityType>
-        <EntityType Name="ClassPromotion">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="BaseClassID" Nullable="false" />
-          <Property Type="Int32" Name="PromotedClassID" Nullable="false" />
-          <NavigationProperty Name="BaseClass" Relationship="FEAModel.FK_ClassPromotion_Base" FromRole="ClassPromotion" ToRole="Class" />
-          <NavigationProperty Name="PromotedClass" Relationship="FEAModel.FK_ClassPromotion_Promoted" FromRole="ClassPromotion" ToRole="Class" />
-        </EntityType>
-        <EntityType Name="ClassSet">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="CharacterID" Nullable="false" />
-          <Property Type="Int32" Name="ClassID" Nullable="false" />
-          <NavigationProperty Name="Character" Relationship="FEAModel.FK_ClassSet_Character" FromRole="ClassSet" ToRole="Character" />
-          <NavigationProperty Name="Class" Relationship="FEAModel.FK_ClassSet_Class" FromRole="ClassSet" ToRole="Class" />
-        </EntityType>
-        <EntityType Name="Support">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="CharacterID" Nullable="false" />
-          <Property Type="Int64" Name="SupportID" Nullable="false" />
-          <Property Type="String" Name="SupportRank" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Character" Relationship="FEAModel.FK_Support_Character" FromRole="Support" ToRole="Character" />
-          <NavigationProperty Name="Character1" Relationship="FEAModel.FK_Support_PairCharacter" FromRole="Support" ToRole="Character" />
-        </EntityType>
-        <Association Name="FK_ClassSet_Character">
-          <End Type="FEAModel.Character" Role="Character" Multiplicity="1" />
-          <End Type="FEAModel.ClassSet" Role="ClassSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Character">
-              <PropertyRef Name="CharacterID" />
-            </Principal>
-            <Dependent Role="ClassSet">
-              <PropertyRef Name="CharacterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Support_Character">
-          <End Type="FEAModel.Character" Role="Character" Multiplicity="1" />
-          <End Type="FEAModel.Support" Role="Support" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Character">
-              <PropertyRef Name="CharacterID" />
-            </Principal>
-            <Dependent Role="Support">
-              <PropertyRef Name="CharacterID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Support_PairCharacter">
-          <End Type="FEAModel.Character" Role="Character" Multiplicity="1" />
-          <End Type="FEAModel.Support" Role="Support" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Character">
-              <PropertyRef Name="CharacterID" />
-            </Principal>
-            <Dependent Role="Support">
-              <PropertyRef Name="SupportID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClassPromotion_Base">
-          <End Type="FEAModel.Class" Role="Class" Multiplicity="1" />
-          <End Type="FEAModel.ClassPromotion" Role="ClassPromotion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Class">
-              <PropertyRef Name="ClassID" />
-            </Principal>
-            <Dependent Role="ClassPromotion">
-              <PropertyRef Name="BaseClassID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClassPromotion_Promoted">
-          <End Type="FEAModel.Class" Role="Class" Multiplicity="1" />
-          <End Type="FEAModel.ClassPromotion" Role="ClassPromotion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Class">
-              <PropertyRef Name="ClassID" />
-            </Principal>
-            <Dependent Role="ClassPromotion">
-              <PropertyRef Name="PromotedClassID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClassSet_Class">
-          <End Type="FEAModel.Class" Role="Class" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="FEAModel.ClassSet" Role="ClassSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Class">
-              <PropertyRef Name="ClassID" />
-            </Principal>
-            <Dependent Role="ClassSet">
-              <PropertyRef Name="ClassID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Parent_Child">
           <End Type="FEAModel.Character" Role="Character" Multiplicity="0..1" />
           <End Type="FEAModel.Character" Role="Character1" Multiplicity="*" />
@@ -378,6 +281,18 @@
               <PropertyRef Name="ParentID" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="Support">
+          <End Type="FEAModel.Character" Role="Character" Multiplicity="*" />
+          <End Type="FEAModel.Character" Role="Character1" Multiplicity="*" />
+        </Association>
+        <Association Name="ClassPromotion">
+          <End Type="FEAModel.Class" Role="Class" Multiplicity="*" />
+          <End Type="FEAModel.Class" Role="Class1" Multiplicity="*" />
+        </Association>
+        <Association Name="ClassSet">
+          <End Type="FEAModel.Character" Role="Character" Multiplicity="*" />
+          <End Type="FEAModel.Class" Role="Class" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -419,34 +334,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ClassPromotions">
-            <EntityTypeMapping TypeName="FEAModel.ClassPromotion">
-              <MappingFragment StoreEntitySet="ClassPromotion">
-                <ScalarProperty Name="PromotedClassID" ColumnName="PromotedClassID" />
-                <ScalarProperty Name="BaseClassID" ColumnName="BaseClassID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ClassSets">
-            <EntityTypeMapping TypeName="FEAModel.ClassSet">
-              <MappingFragment StoreEntitySet="ClassSet">
-                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Supports">
-            <EntityTypeMapping TypeName="FEAModel.Support">
-              <MappingFragment StoreEntitySet="Support">
-                <ScalarProperty Name="SupportRank" ColumnName="SupportRank" />
-                <ScalarProperty Name="SupportID" ColumnName="SupportID" />
-                <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <AssociationSetMapping Name="Support" TypeName="FEAModel.Support" StoreEntitySet="Support">
+            <EndProperty Name="Character1">
+              <ScalarProperty Name="CharacterID" ColumnName="SupportID" />
+            </EndProperty>
+            <EndProperty Name="Character">
+              <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ClassPromotion" TypeName="FEAModel.ClassPromotion" StoreEntitySet="ClassPromotion">
+            <EndProperty Name="Class1">
+              <ScalarProperty Name="ClassID" ColumnName="PromotedClassID" />
+            </EndProperty>
+            <EndProperty Name="Class">
+              <ScalarProperty Name="ClassID" ColumnName="BaseClassID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ClassSet" TypeName="FEAModel.ClassSet" StoreEntitySet="ClassSet">
+            <EndProperty Name="Class">
+              <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+            </EndProperty>
+            <EndProperty Name="Character">
+              <ScalarProperty Name="CharacterID" ColumnName="CharacterID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
