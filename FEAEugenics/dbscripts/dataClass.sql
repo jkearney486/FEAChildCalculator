@@ -41,12 +41,12 @@ insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLc
 insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (39, 'Valkyrie', 80, 30, 42, 38, 43, 45, 30, 45, 0)
 insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (40, 'Villager', 60, 20, 20, 20, 20, 30, 20, 20, 1)
 insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (41, 'Dancer', 80, 30, 30, 40, 40, 45, 30, 30, 1)
-insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (42, 'Taguel', 80, 35, 30, 40, 40, 45, 35, 30, 30, 1)
-insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (43, 'Manakete', 80, 40, 35, 35, 35, 45, 40, 40, 30, 1)
+insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (42, 'Taguel', 80, 35, 30, 40, 40, 45, 35, 30, 1)
+insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (43, 'Manakete', 80, 40, 35, 35, 35, 45, 40, 40, 1)
 insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (44, 'Lodestar', 80, 41, 30, 43, 43, 45, 41, 40, 1)
-insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (45, 'Dread Fighter', 80, 42, 38, 40, 41, 45, 39, 43, 30, 1)
-insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (46, 'Bride', 80, 40, 39, 42, 42, 45, 41, 40, 30, 1)
-insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (47, 'Conqueror', 80, 45, 25, 40, 40, 45, 45, 35, 30, 1)
+insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (45, 'Dread Fighter', 80, 42, 38, 40, 41, 45, 39, 43, 1)
+insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (46, 'Bride', 80, 40, 39, 42, 42, 45, 41, 40, 1)
+insert into [Class] (ClassID, Name, MaxHP, MaxStr, MaxMag, MaxSkl, MaxSpd, MaxLck, MaxDef, MaxRes, IsBaseClass) values (47, 'Conqueror', 80, 45, 25, 40, 40, 45, 45, 35, 1)
 
 set identity_insert [Class] off
 
