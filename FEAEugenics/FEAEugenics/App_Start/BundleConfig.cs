@@ -14,7 +14,6 @@ namespace FEAEugenics
 
             bundles.Add(new ScriptBundle("~/bundles/main").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/knockout-{version}.js",
                         "~/Scripts/knockout-postbox.js",
                         "~/Scripts/knockout-delegatedEvents.js"));
